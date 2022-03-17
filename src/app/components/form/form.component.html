@@ -1,0 +1,115 @@
+<form novalidate [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <h1>Contact</h1>
+  <div>
+    <label for="firstName">First name: </label>
+    <input
+      type="text"
+      id="firstName"
+      placeholder="First name"
+      formControlName="firstName"
+    />
+    <ng-container *ngIf="showFieldError('firstName')">
+        <span style="color: red;" *ngIf="contactForm.get('firstName')?.errors?.['required']">Username is required</span>
+        <span style="color: red;" *ngIf="contactForm.get('firstName')?.errors?.['minlength']">The required length for this field is {{contactForm.get('firstName')?.errors?.['minlength']['requiredLength']}}</span>
+    </ng-container>
+  </div>
+
+  <div>
+    <label for="userName">Username: </label>
+    <input
+      type="text"
+      id="userName"
+      placeholder="Username"
+      
+      formControlName="userName"
+    />
+    <div>Please choose a username.</div>
+  </div>
+
+  <div>
+    <label for="city">City: </label>
+    <input
+      type="text"
+      id="city"
+      placeholder="City"
+      
+      formControlName="city"
+    />
+    <div>Please choose a city.</div>
+  </div>
+
+  <div>
+    <label for="state">State: </label>
+    <input
+      type="text"
+      id="state"
+      placeholder="State"
+      
+      formControlName="state"
+    />
+    <div>Please choose a state.</div>
+  </div>
+
+  <div>
+    <label for="zip">Zip: </label>
+    <input
+      type="text"
+      id="zip"
+      placeholder="Zip"
+      
+      formControlName="zip"
+    />
+    <div>Please choose a zip.</div>
+  </div>
+  <div>
+    <label for="email">Email: </label>
+    <input
+      type="text"
+      id="email"
+      placeholder="Email"
+      
+      formControlName="email"
+    />
+    <ng-container *ngIf="showFieldError('email')">
+      <span style="color: red;" *ngIf="contactForm.get('email')?.errors?.['required']">Email is required</span>
+      <span style="color: red;" *ngIf="contactForm.get('email')?.errors?.['pattern']">Must be a valid email</span>
+  </ng-container>
+  </div>
+  <div>
+      <button type="submit" [disabled]="contactForm.invalid">
+          Submit button
+      </button>
+  </div>
+</form>
+<button (click)="onSetDefault()">Set form values</button>&nbsp;
+<button (click)="onReset()">Reset form values</button>&nbsp;
+<button (click)="onPatch()">Patch form values</button>&nbsp;
+<button (click)="onSetValue()">Set value form values</button>&nbsp;
+<pre>
+    Value: 
+    {{ contactForm.value | json }}
+</pre>
+<pre>
+    Status: 
+    {{ contactForm.status }}
+</pre>
+<pre>
+    Valid: 
+    {{ contactForm.valid }}
+</pre>
+<pre>
+    Invalid: 
+    {{ contactForm.invalid }}
+</pre>
+<pre>
+    Dirty: 
+    {{ contactForm.dirty }}
+</pre>
+<pre>
+    Touched: 
+    {{ contactForm.touched }}
+</pre>
+<pre>
+    Pristine: 
+    {{ contactForm.pristine }}
+</pre>
